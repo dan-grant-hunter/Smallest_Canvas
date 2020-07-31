@@ -37,7 +37,29 @@ def all_coordinatess():
 
 
 
-# Calculate the Smallest Canvas Size
+# Calculate the Bottom Left Coordinates
+def smallest_canvas_bottom_left():
+    smallestx = []
+    smallesty = []
+    for x, y in coordinates:
+        if not smallestx or x < smallestx[0]:
+            smallestx.insert(x, 0)
+        if not smallesty or y < smallesty[0]:
+            smallesty.insert(y, 0)
+    smallest = smallestx + smallest y
+
+
+# Calculate the Top Right Coordinates
+def smallest_canvas_top_right():
+    smallestx = []
+    smallesty = []
+    for x, y in coordinates:
+        if not smallestx or x < smallestx[0]:
+            smallestx.insert(x, 0)
+        if not smallesty or y < smallesty[0]:
+            smallesty.insert(y, 0)
+    smallest = smallestx + smallest y
+
 
 
 
