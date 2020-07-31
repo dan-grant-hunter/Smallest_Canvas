@@ -19,9 +19,9 @@ def number_of_coordinates():
 
 
 # Get Input for all Coordinates
-def all_coordinatess():
+def all_coordinatess(num_of_coords):
     coordinates = []
-    for i in range(amount_of_coordinates):
+    for i in range(num_of_coords):
         try:
             coordinate_input = int(input(f"Enter the coordinates for paint splat {i+1}: "))
             if [number for number in coordinate_input.split(",")] not in range(1, 100):
@@ -38,38 +38,37 @@ def all_coordinatess():
 
 
 # Calculate the Bottom Left Coordinates
-def smallest_canvas_bottom_left():
-    smallestx = []
-    smallesty = []
+def smallest_canvas_bottom_left(coordinates):
+    smallestx = 0
+    smallesty = 0
     for x, y in coordinates:
-        if not smallestx or x < smallestx[0]:
-            smallestx.insert(x, 0)
-        if not smallesty or y < smallesty[0]:
-            smallesty.insert(y, 0)
-    smallest = smallestx + smallest y
+        if not smallestx or x < smallestx:
+            smallestx = x
+        if not smallesty or y < smallesty:
+            smallesty = y
+    smallest = ((smallestx - 1), (smallesty - 1))
+    return ','.join([str(num) for num in smallest])
 
 
 # Calculate the Top Right Coordinates
-def smallest_canvas_top_right():
-    smallestx = []
-    smallesty = []
+def smallest_canvas_top_right(coordinates):
+    smallestx = 0
+    smallesty = 0
     for x, y in coordinates:
-        if not smallestx or x < smallestx[0]:
-            smallestx.insert(x, 0)
-        if not smallesty or y < smallesty[0]:
-            smallesty.insert(y, 0)
-    smallest = smallestx + smallest y
-
-
-
-
-# Return the Smallest Canvas Size
-
+        if not smallestx or x > smallestx:
+            smallestx = x
+        if not smallesty or y > smallesty:
+            smallesty = y
+    smallest = ((smallestx + 1), (smallesty + 1))
+    return ','.join([str(num) for num in smallest])
 
 
 # Main Loop
 def mainLoop():
-    pass
+    num_of_coords = number_of_coordinates()
+    coordinates = all_coordinatess(num_of_coords)
+    print(smallest_canvas_bottom_left(coordinates))
+    print(smallest_canvas_top_right(coordinates))
 
 
 # Replay Prompt
