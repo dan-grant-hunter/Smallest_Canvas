@@ -20,20 +20,24 @@ def number_of_coordinates():
 
 # Get Input for all Coordinates
 def all_coordinatess(num_of_coords):
-    coordinates = []
+    xcoordinates = []
+    ycoordinates = []
     for i in range(num_of_coords):
         try:
             coordinate_input = int(input(f"Enter the coordinates for paint splat {i+1}: "))
-            if [number for number in coordinate_input.split(",")] not in range(1, 100):
-               print('Numbers in coordinates must be between 0 and 100')
-               continue
+            x = int(coordinate_input.split(",")[0])
+            y = int(coordinate_input.split(",")[1])
+            if x not in range(1, 100) or y not in range(1, 100):
+                print('Both numbers in coordinates must be between 0 and 100')
+                continue
         except ValueError:
             print("Please enter numbers between 0 and 100 seperated by a comma (no spaces)")
             continue
         else:
-            coordinates.append(coordinate_input)
+            xcoordinates.append(x)
+            ycoordinates.append(y)
             break
-    return coordinates
+    return xcoordinates, ycoordinates
 
 
 
