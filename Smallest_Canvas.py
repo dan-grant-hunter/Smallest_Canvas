@@ -19,7 +19,7 @@ def number_of_coordinates():
 
 
 # Get Input for all Coordinates
-def all_coordinatess(num_of_coords):
+def all_coordinates(num_of_coords):
     xcoordinates = []
     ycoordinates = []
     for i in range(num_of_coords):
@@ -41,7 +41,6 @@ def all_coordinatess(num_of_coords):
     return xcoordinates, ycoordinates
 
 
-
 # Calculate the Smallest Canvas Size
 def smallest_canvas(coordinates):
     smallestx_for_bl = min(coordinates[0])
@@ -57,7 +56,7 @@ def smallest_canvas(coordinates):
 # Main Loop
 def mainLoop():
     num_of_coords = number_of_coordinates()
-    coordinates = all_coordinatess(num_of_coords)
+    coordinates = all_coordinates(num_of_coords)
     smallest_canvas(coordinates)
 
 
