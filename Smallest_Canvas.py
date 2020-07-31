@@ -23,56 +23,42 @@ def all_coordinatess(num_of_coords):
     xcoordinates = []
     ycoordinates = []
     for i in range(num_of_coords):
-        try:
-            coordinate_input = int(input(f"Enter the coordinates for paint splat {i+1}: "))
-            x = int(coordinate_input.split(",")[0])
-            y = int(coordinate_input.split(",")[1])
-            if x not in range(1, 100) or y not in range(1, 100):
-                print('Both numbers in coordinates must be between 0 and 100')
+        while True:
+            try:
+                coordinate_input = input(f"Enter the coordinates for paint splat {i+1}: ")
+                x = int(coordinate_input.split(",")[0])
+                y = int(coordinate_input.split(",")[1])
+                if x not in range(1, 100) or y not in range(1, 100):
+                    print('Both numbers in coordinates must be between 0 and 100')
+                    continue
+            except (ValueError, IndexError):
+                print("Please enter numbers between 0 and 100 seperated by a comma (no spaces)")
                 continue
-        except ValueError:
-            print("Please enter numbers between 0 and 100 seperated by a comma (no spaces)")
-            continue
-        else:
-            xcoordinates.append(x)
-            ycoordinates.append(y)
-            break
+            else:
+                xcoordinates.append(x)
+                ycoordinates.append(y)
+                break
     return xcoordinates, ycoordinates
 
 
 
-# Calculate the Bottom Left Coordinates
-def smallest_canvas_bottom_left(coordinates):
-    smallestx = 0
-    smallesty = 0
-    for x, y in coordinates:
-        if not smallestx or x < smallestx:
-            smallestx = x
-        if not smallesty or y < smallesty:
-            smallesty = y
-    smallest = ((smallestx - 1), (smallesty - 1))
-    return ','.join([str(num) for num in smallest])
-
-
-# Calculate the Top Right Coordinates
-def smallest_canvas_top_right(coordinates):
-    smallestx = 0
-    smallesty = 0
-    for x, y in coordinates:
-        if not smallestx or x > smallestx:
-            smallestx = x
-        if not smallesty or y > smallesty:
-            smallesty = y
-    smallest = ((smallestx + 1), (smallesty + 1))
-    return ','.join([str(num) for num in smallest])
+# Calculate the Smallest Canvas Size
+def smallest_canvas(coordinates):
+    smallestx_for_bl = min(coordinates[0])
+    smallesty_for_bl = min(coordinates[1])
+    smallestx_for_tr = max(coordinates[0])
+    smallesty_for_tr = max(coordinates[1])
+    smallest_bl = ((smallestx_for_bl - 1), (smallesty_for_bl - 1))
+    smallest_tr = ((smallestx_for_tr + 1), (smallesty_for_tr + 1))
+    print(','.join([str(num) for num in smallest_bl]))
+    print(','.join([str(num) for num in smallest_tr]))
 
 
 # Main Loop
 def mainLoop():
     num_of_coords = number_of_coordinates()
     coordinates = all_coordinatess(num_of_coords)
-    print(smallest_canvas_bottom_left(coordinates))
-    print(smallest_canvas_top_right(coordinates))
+    smallest_canvas(coordinates)
 
 
 # Replay Prompt
